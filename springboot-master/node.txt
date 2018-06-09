@@ -1,0 +1,66 @@
+简介
+	目的：用来简化新Spring应用的初始搭建以及开发过程
+	特点：
+		1、创建独立的Spring应用程序
+		2、嵌入的Tomcat，无需部署WAR文件
+		3、简化Maven配置
+		4、自动配置Spring
+		5、提供生产就绪型功能，如指标，健康检查和外部配置
+		6、绝对没有代码生成和对XML没有要求配置
+
+项目属性配置
+	server.port=8888 表示配置端口
+	server.context-path 表示自定义上下文路径
+	server.tomcat.uri-encoding = UTF-8 表示用于解码URI的字符编码
+	spring.http.encoding.charset = UTF-8 HTTP请求和响应的字符集，如果未明确设置，则添加到“Content-Type”头
+
+Controller的使用
+	@Controller	处理http请求
+	@RestController	Spring4之后新加的注解，原来返回json需要@ResponseBody配合@Controller
+	@RequestMapping	配置url映射
+	项目前后台交互的话 无非两种方式：
+		1、普通整体页面提交，比如form提交；
+		2、局部刷新，或者叫做异步刷新，ajax提交；
+	@Controller就是整体页面刷新提交的处理注解
+	@RestController就是ajax提交，一般返回json格式
+	
+Spring-Data-Jpa
+	JPA(Java Persistence API)定义了一系列对象持久化的标准，
+	目前实现这一规范的产品有Hibernate、TopLink等，
+	Spring Data JPA 框架，主要针对的就是 Spring 唯一没有简化到的业务逻辑代码，
+		至此，开发者连仅剩的实现持久层业务逻辑的工作都省了，
+		唯一要做的，就只是声明持久层的接口，其他都交给 Spring Data JPA 来帮你完成
+	
+表单验证@Valid
+	限制		说明
+	@Null -- 限制只能为null  用在基本类型上
+	@NotNull -- 限制必须不为null
+	@AssertFalse -- 限制必须为false
+	@AssertTrue -- 限制必须为true
+	@DecimalMax(value) -- 限制必须为一个不大于指定值的数字
+	@DecimalMin(value) -- 限制必须为一个不小于指定值的数字
+	@Digits(integer,fraction) -- 限制必须为一个小数，且整数部分的位数不能超过integer，小数部分的位数不能超过fraction
+	@Future -- 限制必须是一个将来的日期
+	@Max(value) -- 限制必须为一个不大于指定值的数字
+	@Min(value) -- 限制必须为一个不小于指定值的数字
+	@Past -- 限制必须是一个过去的日期，验证注解的元素值（日期类型）比当前时间早
+	@Pattern(value) -- 限制必须符合指定的正则表达式
+	@Size(max,min) -- 限制字符长度必须在min到max之间
+	@NotEmpty -- 验证注解的元素值不为null且不为空（字符串长度不为0、集合大小不为0）   用在集合类上面
+	@NotBlank -- 验证注解的元素值不为空（不为null、去除首位空格后长度为0），不同于@NotEmpty，@NotBlank只应用于字符串且在比较时会去除字符串的空格
+	@Email -- 验证注解的元素值是Email，也可以通过正则表达式和flag指定自定义的email格式
+	
+切面AOP
+	AOP切面主要是切方法，我们一般搞一些日志分析和事务操作，要用到切面，类似拦截器；
+	@Aspect注解是切面注解类
+	@Pointcut切点定义
+	@Before是方法执行前调用
+	@After是方法执行后调用
+	@AfterReturning方法执行返回值调用
+
+
+	
+	
+	
+	
+	

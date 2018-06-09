@@ -1,0 +1,66 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>WebSocket</title>
+</head>
+<body onload="connect()">
+	<noscript><h2 style="color: #e80b0a;">Sorry，浏览器不支持WebSocket</h2></noscript>
+	<div>
+	    <div>
+	        <button id="connect" onclick="connect();">连接</button>
+	        <!-- <button id="disconnect" disabled="disabled" onclick="disconnect();">断开连接</button> -->
+	    </div>
+	
+	    <div id="conversationDiv">
+	        <!-- <label>输入你的名字</label><input type="text" id="name"/>
+	        <button id="sendName" onclick="sendName();">发送</button> -->
+	        <p id="response"></p>
+        	<p id="response1"></p>
+	    </div>
+	</div>
+    <script th:src="@{js/sockjs.min.js}"></script>
+    <script th:src="@{js/stomp.js}"></script>
+    <script th:src="@{js/jquery-3.1.1.js}"></script>
+    <script th:inline="javascript">
+	    var stompClient = null;
+	    //此值有服务端传递给前端,实现方式没有要求
+		var userId = "7ae860daef924fbfbf58b654538b3396";
+	
+	    function connect() {
+	    	
+	    	/* var sock = new SockJS('spittr');  
+	    	var stomp = Stomp.over(sock);  
+	    	stomp.connect('guest', 'guest', function(frame) {  
+	    	console.log('Connected');  
+	    	stomp.subscribe("/topic/spittlefeed", handleSpittle); // highlight.  
+	    	});  
+	    	function handleSpittle(incoming) {  
+	    	var spittle = JSON.parse(incoming.body);  
+	    	console.log('Received: ', spittle);  
+	    	var source = $("#spittle-template").html();  
+	    	var template = Handlebars.compile(source);  
+	    	var spittleHtml = template(spittle);  
+	    	$('.spittleList').prepend(spittleHtml);  
+	    	}   */
+	    	
+	        //var socket = new SockJS('http://47.106.86.30:8080/endpointWisely'); //1连接SockJS的endpoint是“endpointWisely”，与后台代码中注册的endpoint要一样。
+	        var socket = new SockJS('https://192.168.1.138/endpointWisely'); //1连接SockJS的endpoint是“endpointWisely”，与后台代码中注册的endpoint要一样。
+	        var sock = new SockJS('https://xdy.52cfzy.com/endpointWisely');
+	        //sock = new SockJS('https://xdy.52cfzy.com/endpointWisely');
+	        stompClient = Stomp.over(socket);//2创建STOMP协议的webSocket客户端。
+	        //stompClient = Stomp.over('wss://xdy.52cfzy.com/endpointWisely');
+	        stompClient.connect({}, function(frame) {//3连接webSocket的服务端。
+	            console.log('开始进行连接Connected: ' + frame);
+	            stompClient.subscribe('/user/' + userId + '/msg', function(respnose){
+	                console.log(respnose);
+	                showResponse1(JSON.parse(respnose.body).responseMessage);
+	            });
+	        });
+	    }
+	    function showResponse1(message) {
+	        var response = $("#response1");
+	        response.html(message);
+	    }
+	</script>
+</body>
+</html>

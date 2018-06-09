@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>添加学生</title>
+<script type="text/javascript" src="jquery-1.4.4.min.js"></script>
+<script type="text/javascript">
+	function formSubmit(){
+		var _param={stuName:$("#stuName").val(),
+				stuAge:$("#stuAge").val(),
+				email:$("#email").val(),
+				birth:$("#birth").val()};
+		$.post("student/saveStudent.do",_param,
+            function(result){
+				var res = eval('(' + result + ')');
+				if(res.flag){
+					//$.post("student/findPageStudent.do");
+					window.location.href='student/findPageStudent.do';
+				}else{					
+	                alert(res.msg);
+				}
+            }
+        );
+	}
+</script>
+</head>
+<body>
+	姓名：<input type="text" id="stuName" name="stuName"/><br/>
+	年龄：<input type="text" id="stuAge" name="stuAge"/><br/>
+	邮箱：<input type="text" id="email" name="email"/><br/>
+	生日：<input type="date" id="birth" name="birth"/><br/>
+	<button type="button" onclick="formSubmit()">提交</button>
+</body>
+</html>

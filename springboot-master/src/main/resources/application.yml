@@ -1,0 +1,18 @@
+server: 
+  port: 8888
+  context-path: /springboot-master
+mysql: 
+   jdbcName: com.mysql.jdbc.Driver
+   dbUrl: jdbc:mysql://localhost:3306/test
+   userName: root
+   password: root
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull
+    username: root
+    password: root
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
