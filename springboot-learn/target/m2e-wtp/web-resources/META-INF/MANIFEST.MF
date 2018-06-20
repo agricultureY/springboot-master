@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Implementation-Title: springboot-learn
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: mobo
+Built-By: ycn
 Implementation-Vendor-Id: com.ycn
-Build-Jdk: 1.8.0_161
+Build-Jdk: 1.8.0_151
 Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
  ot-starter-parent/springboot-learn
 Created-By: Maven Integration for Eclipse

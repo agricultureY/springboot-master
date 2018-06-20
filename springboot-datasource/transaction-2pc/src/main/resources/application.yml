@@ -1,0 +1,60 @@
+server:
+  port: 7078
+#  context-parameters: /user
+
+spring:
+  application:
+    name: datasource-2pc
+
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+
+    ##test  datasource
+#    test:
+#      driverClassName: com.mysql.jdbc.Driver
+#      url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=utf-8
+#      username: root
+#      password: root
+    ##test1  datasource
+#    test1:
+#          driverClassName: com.mysql.jdbc.Driver
+#          url: jdbc:mysql://127.0.0.1:3306/test1?useUnicode=true&characterEncoding=utf-8
+#          username: root
+#          password: root
+
+mysql:
+  datasource:
+    test:
+      url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=utf-8
+      username: root
+      password: root
+      minPoolSize: 3
+      maxPoolSize: 25
+      maxLifetime: 20000
+      borrowConnectionTimeout: 30
+      loginTimeout: 30
+      maintenanceInterval: 60
+      maxIdleTime: 60
+      testQuery: select 1
+    test1:
+      url: jdbc:mysql://127.0.0.1:3306/test1?useUnicode=true&characterEncoding=utf-8
+      username: root
+      password: root
+      minPoolSize: 3
+      maxPoolSize: 25
+      maxLifetime: 20000
+      borrowConnectionTimeout: 30
+      loginTimeout: 30
+      maintenanceInterval: 60
+      maxIdleTime: 60
+      testQuery: select 1
+
+
+
+
+
+
+
